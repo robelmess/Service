@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "127689134056",
+    "project_id": "tewahedo-calendar-8cce7",
+    "storage_bucket": "tewahedo-calendar-8cce7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127689134056:android:5c110c001dbb49eec1de5d",
+        "android_client_info": {
+          "package_name": "com.tewahedocalendar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127689134056-kiu3t02nmkot3c0f84shvaem5hqf9p12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmTzzsblp2_MH7jxf75aBmGvWD7JdjPoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127689134056-kiu3t02nmkot3c0f84shvaem5hqf9p12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
