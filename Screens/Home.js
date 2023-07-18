@@ -4,25 +4,20 @@ import { CalendarList } from 'react-native-calendars';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { getDatabase, ref, onValue } from "firebase/database";
+import database from '@react-native-firebase/database';
 
-import MockData from '../Data/mockData'
+function User({ userId }) {
+
+}
 
 export default function HomeScreen({ navigation }) {
-  // const [Data, setData] = useState()
+  const [Data, setData] = useState()
 
-  // const db = getDatabase();
-  // const parsedData = ref(db)
-
-  // useEffect(() => {
-  //   onValue(parsedData, (snapshot) => {
-  //     const data = MockData;
-  //     const expandedData = expandData(data);
-  //     setData(expandedData);
-  //   });
-  // }, [])
-
-  const Data = expandData(MockData)
+  database()
+    .ref(`/Events`)
+    .on('value', snapshot => {
+      setData(expandData(snapshot.val()))
+    });
 
   const [selectedDay, setSelectedDay] = useState()
   const [currentMonth, setCurrentMonth] = useState();
@@ -44,47 +39,44 @@ export default function HomeScreen({ navigation }) {
 
   function expandData(data) {
     const expandedData = {};
-  
-    // Iterate over each month in the data
-    for (const month in data) {
-      const item = data[month];
-      const { date } = item;
-  
-      // Check if the date contains a pipe operator
+
+    for (const item of data) {
+      const { Date: date, Color: color, ...rest } = item;
+
       if (date.includes('|')) {
         const [startDate, endDate] = date.split('|');
         let d = new Date(startDate);
         let end = new Date(endDate);
-  
-        // Create a new date object for each date in the range
-        for (; d <= end; d.setDate(d.getDate() + 1)) {
-          const newDate = d.toISOString().split('T')[0]; // Format the date as YYYY-MM-DD
-  
-          // Add a new item to the expanded data for the new date
+
+        for (; d <= end; d = new Date(d.getTime() + 24 * 60 * 60 * 1000)) {
+          const newDate = d.toISOString().split('T')[0];
+
           expandedData[newDate] = {
-            ...item, // Copy all properties from the original item
-            date: newDate, // Update the date
-            startingDay: d.getTime() === new Date(startDate).getTime(), // Mark as starting day if it's the first date of the range
-            endingDay: d.getTime() === end.getTime(), // Mark as ending day if it's the last date of the range
+            ...rest,
+            color,
+            Date: newDate,
+            textColor: 'white',
+            startingDay: d.getTime() === new Date(startDate).getTime(),
+            endingDay: d.getTime() === end.getTime(),
           };
         }
       } else {
-        // If the date does not contain a pipe operator, mark the date as both the starting and ending day
         expandedData[date] = {
-          ...item,
+          ...rest,
+          color,
+          textColor: 'white',
           startingDay: true,
           endingDay: true,
         };
       }
     }
-  
+
     return expandedData;
   }
-  
-  
-  
-  
-  
+
+
+
+
 
   const getLegendForMonth = (month) => {
     if (!month) {
@@ -161,8 +153,8 @@ export default function HomeScreen({ navigation }) {
                 dateDetails = Data[selectedDate] || {};
               }
 
-              const { Description, color, legendTag, icon, link} = dateDetails;
-              navigation.navigate('Details', { selectedDay: pressedDate, description: Description, color: color, legendTag: legendTag, icon: icon, link: link});
+              const { Description, color, LegendTag, Icon, Link } = dateDetails;
+              navigation.navigate('Details', { selectedDay: pressedDate, description: Description, color: color, legendTag: LegendTag, icon: Icon, link: Link });
             }
           }}
 
