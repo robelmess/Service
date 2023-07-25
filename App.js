@@ -18,7 +18,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="EOTC Calendar">
-        <Stack.Screen name="EOTC Calendar" component={HomeScreen} />
+        <Stack.Screen name="Tewahedo Calendar" component={HomeScreen} />
         <Stack.Screen options={{ headerShown: false, presentation: 'modal' }} name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>

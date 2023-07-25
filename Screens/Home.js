@@ -4,12 +4,21 @@ import { CalendarList } from 'react-native-calendars';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import database from '@react-native-firebase/database';
 
-function User({ userId }) {
-
-}
-
 export default function HomeScreen({ navigation }) {
   const [Data, setData] = useState()
+
+  const [calendarRanges, setCalendarRanges] = useState(calculateCalendarRanges());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCalendarRanges(calculateCalendarRanges());
+    }, 24 * 60 * 60 * 1000); // Update every 24 hours
+
+    // Clean up function
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   useEffect(() => {
     const ref = database().ref('/Events');
@@ -45,18 +54,46 @@ export default function HomeScreen({ navigation }) {
     };
   
   
+    function calculateCalendarRanges() {
+      // Get the current date
+      const currentDate = new Date();
+    
+      // Calculate the start of last year
+      const startOfLastYear = new Date(currentDate.getFullYear() - 1, 0, 1);
+    
+      // Calculate the end of next year
+      const endOfNextYear = new Date(currentDate.getFullYear() + 2, 11, 31);
+    
+      // Calculate the past and future scroll range in months
+      const pastScrollRange = currentDate.getMonth() + 1 + (currentDate.getFullYear() - startOfLastYear.getFullYear()) * 12;
+      const futureScrollRange = (endOfNextYear.getFullYear() - currentDate.getFullYear()) * 12 - currentDate.getMonth();
+    
+      // Convert dates to strings in the format 'yyyy-mm-dd'
+      const currentYear = currentDate.getFullYear();      
+      const minDate = `${currentYear}-01-01`; // January 1st of the current year
+      const maxDate = `${currentYear}-12-31`; // December 31st of the current year
+      
+    
+      return { minDate, maxDate, pastScrollRange, futureScrollRange };
+    }
+    
     function expandData(data) {
       const expandedData = {};
+    
+      // Store the details of the date surrounded by parentheses
+      let parenthesesDetails = null;
+      // Store the excluded date ranges
+      let excludedDates = [];
     
       for (const item of data) {
         const { Date: date, Color: color, ...rest } = item;
     
-        if (date.includes('|')) {
+        if (date.includes('|') && !date.startsWith('(')) {
           const [startDate, endDate] = date.split('|');
           let d = new Date(startDate);
           let end = new Date(endDate);
     
-          for (; d <= end; d = new Date(d.getTime() + 24 * 60 * 60 * 1000)) {
+          for (;d <= end; d = new Date(d.getTime() + 24 * 60 * 60 * 1000)) {
             const newDate = d.toISOString().split('T')[0];
     
             expandedData[newDate] = {
@@ -67,6 +104,21 @@ export default function HomeScreen({ navigation }) {
               startingDay: d.getTime() === new Date(startDate).getTime(),
               endingDay: d.getTime() === end.getTime(),
             };
+          }
+        } else if (date.startsWith('(') && date.endsWith(')')) {
+          // If the date is surrounded by parentheses, store its details
+          parenthesesDetails = { ...rest };
+    
+          // Extract the excluded date ranges
+          const ranges = date.slice(1, -1).split(',');
+          for (const range of ranges) {
+            const [start, end] = range.split('|');
+            let d = new Date(start);
+            let endDate = new Date(end);
+    
+            for (; d <= endDate; d = new Date(d.getTime() + 24 * 60 * 60 * 1000)) {
+              excludedDates.push(d.toISOString().split('T')[0]);
+            }
           }
         } else {
           expandedData[date] = {
@@ -79,8 +131,31 @@ export default function HomeScreen({ navigation }) {
         }
       }
     
+      // After expanding data, add marked and dotColor properties to every Wednesday and Friday
+      const currentYear = new Date().getFullYear();
+      let d = new Date(currentYear, 0, 1);  // start from Jan 1st of current year
+      let end = new Date(currentYear, 11, 31);  // end on Dec 31st of current year
+    
+      for (; d <= end; d = new Date(d.getTime() + 24 * 60 * 60 * 1000)) {
+        const newDate = d.toISOString().split('T')[0];
+        const dayOfWeek = d.getDay();
+    
+        // If the date is Wednesday or Friday and it's not a holiday or an excluded date
+        if ((dayOfWeek === 3 || dayOfWeek === 5) && !expandedData[newDate] && !excludedDates.includes(newDate)) {
+          expandedData[newDate] = {
+            ...parenthesesDetails,  // Use the details of the date surrounded by parentheses
+            marked: true,
+            dotColor: 'black',
+            Date: newDate,
+          };
+        }
+      }
+    
       return expandedData;
     }
+    
+    
+    
     
   
     const getLegendForMonth = (month) => {
@@ -102,9 +177,26 @@ export default function HomeScreen({ navigation }) {
       // Convert the object back to an array of {color, legendTag} objects and return it
       return Object.keys(uniqueColors).map(color => ({ color, legendTag: uniqueColors[color] }));
     };
-    
-    
   
+    const handleDayPress = React.useCallback((day) => {
+      const pressedDate = day.dateString;
+      let selectedDate = pressedDate;
+      let dateDetails = Data[selectedDate] || {};
+    
+      if (dateDetails.color || dateDetails.dotColor) {
+        // If the selected date does not have details, check previous dates
+        while (!dateDetails.Description && selectedDate > calendarRanges.minDate) {
+          const prevDate = new Date(selectedDate);
+          prevDate.setDate(prevDate.getDate() - 1);
+          selectedDate = prevDate.toISOString().split('T')[0];
+          dateDetails = Data[selectedDate] || {};
+        }
+    
+        const { Description, color, LegendTag, Icon, Link, Title} = dateDetails;
+        navigation.navigate('Details', { selectedDay: pressedDate, description: Description, color: color, legendTag: LegendTag, icon: Icon, link: Link, title: Title});
+      }
+    }, [Data, navigation]);
+    
   
     const handleJumpToToday = React.useCallback(() => {
       const firstDayOfCurrentMonth = new Date();
@@ -143,35 +235,17 @@ export default function HomeScreen({ navigation }) {
         <View style={{ flex: 1 }}>
           <CalendarList
   
-            onDayPress={day => {
-              const pressedDate = day.dateString;
-              let selectedDate = pressedDate;
-              let dateDetails = Data[selectedDate] || {};
+            onDayPress={handleDayPress}
   
-              if (dateDetails.color) {
-                // If the selected date does not have details, check previous dates
-                while (!dateDetails.Description && selectedDate > '2023-01-01') {
-                  const prevDate = new Date(selectedDate);
-                  prevDate.setDate(prevDate.getDate() - 1);
-                  selectedDate = prevDate.toISOString().split('T')[0];
-                  dateDetails = Data[selectedDate] || {};
-                }
-  
-                const { Description, color, LegendTag, Icon, Link, Title} = dateDetails;
-                navigation.navigate('Details', { selectedDay: pressedDate, description: Description, color: color, legendTag: LegendTag, icon: Icon, link: Link, title: Title});
-              }
-            }}
-  
-            current='2023-01-01'
-  
+
             onVisibleMonthsChange={handleVisibleMonthsChange}
             ref={calendarRef}
             markingType={'period'}
   
-            minDate='2023-01-01'
-            maxDate='2025-12-31'
-            pastScrollRange={9}
-            futureScrollRange={12}
+            minDate={calendarRanges.minDate}
+            maxDate={calendarRanges.maxDate}
+            pastScrollRange={calendarRanges.pastScrollRange}
+            futureScrollRange={calendarRanges.futureScrollRange}
   
             markedDates={Data}
           />

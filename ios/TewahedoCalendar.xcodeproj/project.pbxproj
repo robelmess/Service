@@ -14,6 +14,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-TewahedoCalendar-TewahedoCalendarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-TewahedoCalendar-TewahedoCalendarTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		BC1951172A6CB5360061E29E /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = BC1951162A6CB5360061E29E /* Fonts */; };
+		BC1951182A6CB5360061E29E /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = BC1951162A6CB5360061E29E /* Fonts */; };
 		BC4090562A6B325700742DC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC4090552A6B325700742DC7 /* GoogleService-Info.plist */; };
 		BC4090572A6B325700742DC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC4090552A6B325700742DC7 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -46,6 +48,7 @@
 		66419FE02A5FCFA000FF7B3C /* TewahedoCalendar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = TewahedoCalendar.entitlements; path = TewahedoCalendar/TewahedoCalendar.entitlements; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TewahedoCalendar/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-TewahedoCalendar-TewahedoCalendarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TewahedoCalendar-TewahedoCalendarTests.release.xcconfig"; path = "Target Support Files/Pods-TewahedoCalendar-TewahedoCalendarTests/Pods-TewahedoCalendar-TewahedoCalendarTests.release.xcconfig"; sourceTree = "<group>"; };
+		BC1951162A6CB5360061E29E /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		BC4090552A6B325700742DC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -121,6 +124,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				BC1951162A6CB5360061E29E /* Fonts */,
 				BC4090552A6B325700742DC7 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* TewahedoCalendar */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -243,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC4090572A6B325700742DC7 /* GoogleService-Info.plist in Resources */,
+				BC1951182A6CB5360061E29E /* Fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +258,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				BC4090562A6B325700742DC7 /* GoogleService-Info.plist in Resources */,
+				BC1951172A6CB5360061E29E /* Fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
