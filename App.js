@@ -13,6 +13,7 @@ function App() {
   useEffect(() => {
     requestUserPermission()
     NotificationListener()
+
   }, [])
 
   return (
