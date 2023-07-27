@@ -1,41 +1,49 @@
 {
   "images" : [
     {
+      "filename" : "TewahedoCalendarIcon40x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
+      "filename" : "TewahedoCalendarIcon60x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
+      "filename" : "TewahedoCalendarIcon58x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
+      "filename" : "TewahedoCalendarIcon87x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
+      "filename" : "TewahedoCalendarIcon80x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
+      "filename" : "TewahedoCalendarIcon120x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
+      "filename" : "TewahedoCalendarIcon120x 1.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
+      "filename" : "TewahedoCalendarIcon180x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"

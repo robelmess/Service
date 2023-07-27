@@ -5,7 +5,7 @@ import HomeScreen from './Screens/Home';
 import DetailsScreen from './Screens/Details'
 
 import { useState, useRef, useEffect } from 'react'
-import { requestUserPermission, NotificationListener, GetFCMToken,checkToken, getFCMToken } from "./utils/pushnotification_helper"
+import { requestUserPermission, NotificationListener, GetFCMToken, checkToken, getFCMToken } from "./utils/pushnotification_helper"
 
 const Stack = createNativeStackNavigator();
 
@@ -13,7 +13,6 @@ function App() {
   useEffect(() => {
     requestUserPermission()
     NotificationListener()
-
   }, [])
 
   return (

@@ -14,8 +14,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		667638C32A71887800D6D899 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 667638C22A71887700D6D899 /* GoogleService-Info.plist */; };
 		667638C42A71887800D6D899 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 667638C22A71887700D6D899 /* GoogleService-Info.plist */; };
+		667638C62A72277900D6D899 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 667638C52A72277900D6D899 /* Launch Screen.storyboard */; };
 		7699B88040F8A987B510C191 /* libPods-TewahedoCalendar-TewahedoCalendarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-TewahedoCalendar-TewahedoCalendarTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		BC1951172A6CB5360061E29E /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = BC1951162A6CB5360061E29E /* Fonts */; };
 		BC1951182A6CB5360061E29E /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = BC1951162A6CB5360061E29E /* Fonts */; };
 /* End PBXBuildFile section */
@@ -47,7 +47,7 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-TewahedoCalendar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TewahedoCalendar.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66419FE02A5FCFA000FF7B3C /* TewahedoCalendar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = TewahedoCalendar.entitlements; path = TewahedoCalendar/TewahedoCalendar.entitlements; sourceTree = "<group>"; };
 		667638C22A71887700D6D899 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TewahedoCalendar/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		667638C52A72277900D6D899 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-TewahedoCalendar-TewahedoCalendarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TewahedoCalendar-TewahedoCalendarTests.release.xcconfig"; path = "Target Support Files/Pods-TewahedoCalendar-TewahedoCalendarTests/Pods-TewahedoCalendar-TewahedoCalendarTests.release.xcconfig"; sourceTree = "<group>"; };
 		BC1951162A6CB5360061E29E /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -98,7 +98,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				667638C52A72277900D6D899 /* Launch Screen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = TewahedoCalendar;
@@ -255,9 +255,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				667638C32A71887800D6D899 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				667638C62A72277900D6D899 /* Launch Screen.storyboard in Resources */,
 				BC1951172A6CB5360061E29E /* Fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,7 +461,7 @@
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-TewahedoCalendar-TewahedoCalendarTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 5YMWZN2T48;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -490,7 +490,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 5YMWZN2T48;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TewahedoCalendarTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -517,8 +517,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TewahedoCalendar/TewahedoCalendar.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5YMWZN2T48;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = TewahedoCalendar/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tewahedo Calendar";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -545,7 +548,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TewahedoCalendar/TewahedoCalendar.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5YMWZN2T48;
 				INFOPLIST_FILE = TewahedoCalendar/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tewahedo Calendar";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -612,7 +618,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -678,7 +684,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
