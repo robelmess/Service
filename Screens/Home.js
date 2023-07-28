@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
     right: 20, // <-- Add this, adjust as needed
   },
   jumpToTodayButtonDark: {
-    backgroundColor: '#424242',
+    backgroundColor: 'black',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 25,
@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
   legendContainerDark: {
     flexDirection: 'row',
     flex: 1,
-    backgroundColor: '#424242',
+    backgroundColor: 'black',
     borderRadius: 10,
     alignItems: 'flex-start',
     shadowColor: '#FFF',

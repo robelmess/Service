@@ -43,10 +43,10 @@ export default function DetailsScreen({ route }) {
             <Icon name="info" size={20} color="black" />
           </TouchableOpacity>
         </View>
-        <View style={[styles.descriptionContainer, { backgroundColor: 'white' }]}>
-          <Text style={[styles.descriptionTitle, { fontSize: 35 }]}>{title}</Text>
+        <View style={theme == 'light' ? styles.descriptionContainerLight : styles.descriptionContainerDark}>
+          <Text style={theme == 'light' ? styles.descriptionTitleLight : styles.descriptionTitleDark}>{title}</Text>
           <ScrollView>
-            <Text style={styles.descriptionText}>{text}</Text>
+            <Text style={theme == 'light' ? styles.descriptionTextLight : styles.descriptionTextDark}>{text}</Text>
           </ScrollView>
         </View>
       </Swiper>
@@ -106,23 +106,45 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  descriptionContainer: {
+  descriptionContainerLight: {
     borderRadius: 15,
     padding: 10,
-    height: '100%'
+    height: '100%',
+    backgroundColor: '#FFF'
   },
-  descriptionText: {
+  descriptionContainerDark: {
+    borderRadius: 15,
+    padding: 10,
+    height: '100%',
+    backgroundColor: '#212226'
+  },
+  descriptionTextLight: {
     fontSize: 19,
     color: 'grey',
     fontFamily: 'Roboto',
     lineHeight: 35,
     marginBottom: 10,
   },
-  descriptionTitle: {
+  descriptionTextDark: {
+    fontSize: 19,
+    color: '#d1d1d1',
+    fontFamily: 'Roboto',
+    lineHeight: 35,
+    marginBottom: 10,
+  },
+  descriptionTitleLight: {
     fontSize: 24,
     fontWeight: 'bold',
     color: 'black',
     marginBottom: 10,
+    fontSize: 35
+  },
+  descriptionTitleDark: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 10,
+    fontSize: 35
   },
   dateContainer: {
     flexDirection: 'row',
