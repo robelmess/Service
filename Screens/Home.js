@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
     dayTextColor: '#2d4150',
   },
   homePageDark: {
-    calendarBackground: 'black',
+    calendarBackground: '#212226',
     textSectionTitleColor: 'white',
     selectedDayBackgroundColor: 'white',
     dayTextColor: 'white',
